@@ -1,4 +1,5 @@
-import request from 'request'
+import request from 'request';
+import { Promise } from 'es6-promise';
 
 const req = request.defaults({
   baseUrl: 'https://slack.com/api/',
@@ -17,26 +18,34 @@ export default function exec(url, form, callback) {
   })
 
   // always post
-  req.post({url, form}, (err, res)=> {
-    var rateLimit = 'You are sending too many requests. Please relax.'
-    if (err) {
-      // if request failed bubble the error
-      callback(err)
-    }
-    else if (res.body.error) {
-      // if Slack returns an error bubble the error
-      callback(Error(res.body.error))
-    }
-    else if (typeof res.body === 'string' && res.body.includes(rateLimit)) {
-      // sometimes you need to chill out
-      callback(Error('rate_limit'))
-    }
-    else {
-      // success! clean up the response
-      let json = res.body
-      delete json.ok
-      callback(null, json)
-    }
-  })
+  return new Promise(function (resolve, reject) {
+    req.post({ url, form }, (err, res)=> {
+      var rateLimit = 'You are sending too many requests. Please relax.'
+      if (err) {
+        // if request failed bubble the error
+        callback && callback(err);
+        reject(err);
+      }
+      else if (res.body.error) {
+        var error = Error(res.body.error);
+        // if Slack returns an error bubble the error
+        callback && callback(error);
+        reject(error);
+      }
+      else if (typeof res.body === 'string' && res.body.includes(rateLimit)) {
+        var error = Error('rate_limit');
+        // sometimes you need to chill out
+        callback && callback(error);
+        reject(error);
+      }
+      else {
+        // success! clean up the response
+        let json = res.body
+        delete json.ok
+        callback && callback(null, json);
+        resolve(json);
+      }
+    });
+  });
 /// eom
 }
