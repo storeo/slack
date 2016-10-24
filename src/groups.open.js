@@ -10,6 +10,6 @@ export default function groupsopen(params, callback) {
     callback(err)
   }
   else {
-    exec(ns, params, callback)
+    return exec(ns, params, callback)
   }
 }

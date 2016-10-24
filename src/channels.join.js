@@ -10,6 +10,6 @@ export default function channelsjoin(params, callback) {
     callback(err)
   }
   else {
-    exec(ns, params, callback)
+    return exec(ns, params, callback)
   }
 }
