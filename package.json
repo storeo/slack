@@ -1,6 +1,6 @@
 {
   "name": "slack-promise",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A wrapper over slack(https://www.npmjs.com/package/slack) that additionally supports ES6 promises",
   "main": "methods/index",
   "browser": {
