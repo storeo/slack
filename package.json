@@ -1,7 +1,7 @@
 {
-  "name": "slack",
-  "version": "7.7.3",
-  "description": "Slack API client written in JS",
+  "name": "slack-promise",
+  "version": "1.0.0",
+  "description": "A wrapper over slack(https://www.npmjs.com/package/slack) that additionally supports ES6 promises",
   "main": "methods/index",
   "browser": {
     "./methods/_exec.js": "./methods/_exec-browser.js",
@@ -18,19 +18,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/smallwins/slack.git"
+    "url": "git+https://github.com/storeo/slack-promise.git"
   },
   "keywords": [
     "slack",
     "api",
     "client"
   ],
-  "author": "Brian LeRoux <b@brian.io>",
+  "author": "Jophin Joseph",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/smallwins/slack/issues"
+    "url": "https://github.com/storeo/slack-promise/issues"
   },
-  "homepage": "https://github.com/smallwins/slack#readme",
+  "homepage": "https://github.com/storeo/slack-promise#readme",
   "devDependencies": {
     "babel-cli": "^6.3.15",
     "babel-plugin-add-module-exports": "^0.1.1",
