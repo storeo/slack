@@ -19,7 +19,7 @@ export default function teambillableInfo(params, callback) {
           callback && callback(err);
         } else {
           resolve(res);
-          callback && callback(res);
+          callback && callback(null, res);
         }
       });
     }    
