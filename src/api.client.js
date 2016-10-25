@@ -393,6 +393,10 @@ export default function client(token) {
     params.token = token
     require('./usergroups.users.update').call({}, params, callback)
   }
+  applied.users.deletePhoto = function (params, callback) {
+    params.token = token
+    require('./users.deletePhoto').call({}, params, callback)
+  }
   applied.users.getPresence = function (params, callback) {
     params.token = token
     require('./users.getPresence').call({}, params, callback)
@@ -420,6 +424,10 @@ export default function client(token) {
   applied.users.setActive = function (params, callback) {
     params.token = token
     require('./users.setActive').call({}, params, callback)
+  }
+  applied.users.setPhoto = function (params, callback) {
+    params.token = token
+    require('./users.setPhoto').call({}, params, callback)
   }
   applied.users.setPresence = function (params, callback) {
     params.token = token

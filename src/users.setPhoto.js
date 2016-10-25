@@ -4,9 +4,9 @@ import exec from './_exec'
 import validate from './_validate'
 import {Promise} from './es6-promise'
 
-export default function dndendDnd(params, callback) {
+export default function userssetPhoto(params, callback) {
   return new Promise(function(resolve, reject) {
-    let ns = 'dnd.endDnd'
+    let ns = 'users.setPhoto'
     let err = validate(ns, params)
     if (err) {
       reject(err);

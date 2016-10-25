@@ -18,34 +18,28 @@ export default function exec(url, form, callback) {
   })
 
   // always post
-  return new Promise(function (resolve, reject) {
     req.post({ url, form }, (err, res)=> {
       var rateLimit = 'You are sending too many requests. Please relax.'
       if (err) {
         // if request failed bubble the error
-        reject(err);
-        callback && callback(err);
+        callback(err);
       }
       else if (res.body.error) {
         var error = Error(res.body.error);
         // if Slack returns an error bubble the error
-        reject(error);
-        callback && callback(error);
+        callback(error);
       }
       else if (typeof res.body === 'string' && res.body.includes(rateLimit)) {
         var error = Error('rate_limit');
         // sometimes you need to chill out
-        reject(error);
-        callback && callback(error);
+        callback(error);
       }
       else {
         // success! clean up the response
         let json = res.body
         delete json.ok
-        resolve(json);
-        callback && callback(null, json);
+        callback(null, json);
       }
     });
-  });
 /// eom
 }
